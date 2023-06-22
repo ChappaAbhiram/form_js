@@ -83,15 +83,28 @@ function onSubmit(e){
     e.preventDefault();
      var myobj = {
     name : document.getElementById('name').value,
-    email : document.getElementById('email').value,
-    phone : document.getElementById('phone').value
+    email : e.target.email.value,
+    phone : e.target.phone.value
     }
     strmyobj = JSON.stringify(myobj);
     localStorage.setItem(myobj.email,strmyobj);
-    var destrobj = JSON.parse(localStorage.getItem("myobj.email"));
+    showonuserscreen(myobj);
+    e.target.email.value = '';
+    e.target.name.value = '';
+    e.target.phone.value='';
+}
+    //var destrobj = JSON.parse(localStorage.getItem("myobj.email"));
     // console.log(destrobj);
+    function showonuserscreen(myobj){
     const cont = document.querySelector('.containers');
-    const div = document.createElement('div');
-    div.appendChild(document.createTextNode(myobj.name+'- '+myobj.email+'- '+myobj.phone));
-    cont.appendChild(div);
+    const li = document.createElement('li');
+    li.textContent=myobj.name+'- '+myobj.email+'- '+myobj.phone;
+    const butn = document.createElement('button');
+    butn.appendChild(document.createTextNode('Delete'));
+    butn.onclick=()=>{
+        cont.removeChild(li);
+       localStorage.removeItem(myobj.email);
+   }
+    li.appendChild(butn);
+    cont.appendChild(li);
 }
