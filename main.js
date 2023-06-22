@@ -101,10 +101,21 @@ function onSubmit(e){
     li.textContent=myobj.name+'- '+myobj.email+'- '+myobj.phone;
     const butn = document.createElement('button');
     butn.appendChild(document.createTextNode('Delete'));
+    const editbutn = document.createElement('button');
+    editbutn.appendChild(document.createTextNode('Edit'));
+    editbutn.onclick=()=>{
+        document.getElementById('name').value = myobj.name;
+        document.getElementById('email').value = myobj.email;
+        document.getElementById('phone').value = myobj.phone;
+
+        cont.removeChild(li);
+       localStorage.removeItem(myobj.email);
+    }
     butn.onclick=()=>{
         cont.removeChild(li);
        localStorage.removeItem(myobj.email);
    }
     li.appendChild(butn);
+    li.appendChild(editbutn);
     cont.appendChild(li);
 }
