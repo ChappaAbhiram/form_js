@@ -80,8 +80,12 @@ const btn = document.querySelector('.btn');
 // }
 myForm.addEventListener('submit',onSubmit);
 function onSubmit(e){
-    var name = document.getElementById('name').value;
-    var email = document.getElementById('email').value;
-    localStorage.setItem('username',name);
-    localStorage.setItem('userEmail',email);
+    var myobj = {
+    name : document.getElementById('name').value,
+    email : document.getElementById('email').value,
+    }
+    strmyobj = JSON.stringify(myobj);
+    localStorage.setItem('myobj',strmyobj);
+    // var destrobj = JSON.parse(localStorage.getItem("myobj"));
+    // console.log(destrobj);
 }
