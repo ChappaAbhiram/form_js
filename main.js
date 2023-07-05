@@ -78,6 +78,7 @@ const btn = document.querySelector('.btn');
 //     emailInput.value = '';
 //   }
 // }
+
 myForm.addEventListener('submit',onSubmit);
 function onSubmit(e){
     e.preventDefault();
@@ -87,8 +88,12 @@ function onSubmit(e){
     phone : e.target.phone.value
     }
     strmyobj = JSON.stringify(myobj);
-    localStorage.setItem(myobj.email,strmyobj);
-    showonuserscreen(myobj);
+    //localStorage.setItem(myobj.email,strmyobj);
+    axios.post("https://crudcrud.com/api/33e667dd5d574236b8a5c4f1141adc29/appointmentdata",myobj)
+    .then(response=>{
+        showonuserscreen(response.data);
+    })
+    .catch(err=>console.log(err));
     e.target.email.value = '';
     e.target.name.value = '';
     e.target.phone.value='';
@@ -112,6 +117,7 @@ function onSubmit(e){
        localStorage.removeItem(myobj.email);
     }
     butn.onclick=()=>{
+        //axios.delete(`"https://crudcrud.com/api/33e667dd5d574236b8a5c4f1141adc29/appointmentdata/${myobj._id}"`);
         cont.removeChild(li);
        localStorage.removeItem(myobj.email);
    }
