@@ -118,15 +118,16 @@ window.addEventListener("DOMContentLoaded",()=>{
     const editbutn = document.createElement('button');
     editbutn.appendChild(document.createTextNode('Edit'));
     editbutn.onclick=()=>{
+
         document.getElementById('name').value = myobj.name;
         document.getElementById('email').value = myobj.email;
         document.getElementById('phone').value = myobj.phone;
-
+        axios.delete(`https://crudcrud.com/api/33e667dd5d574236b8a5c4f1141adc29/appointmentdata/${myobj._id}`);
         cont.removeChild(li);
        localStorage.removeItem(myobj.email);
     }
     butn.onclick=()=>{
-        //axios.delete(`"https://crudcrud.com/api/33e667dd5d574236b8a5c4f1141adc29/appointmentdata/${myobj._id}"`);
+        axios.delete(`https://crudcrud.com/api/33e667dd5d574236b8a5c4f1141adc29/appointmentdata/${myobj._id}`);
         cont.removeChild(li);
        localStorage.removeItem(myobj.email);
    }
