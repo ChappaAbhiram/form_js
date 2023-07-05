@@ -98,6 +98,15 @@ function onSubmit(e){
     e.target.name.value = '';
     e.target.phone.value='';
 }
+window.addEventListener("DOMContentLoaded",()=>{
+    axios.get("https://crudcrud.com/api/33e667dd5d574236b8a5c4f1141adc29/appointmentdata")
+    .then((response)=>{
+        for(var i=0;i<response.data.length;i++){
+           showonuserscreen(response.data[i]);
+        }
+    })
+    .catch(err=>console.log(err));
+})
     //var destrobj = JSON.parse(localStorage.getItem("myobj.email"));
     // console.log(destrobj);
     function showonuserscreen(myobj){
